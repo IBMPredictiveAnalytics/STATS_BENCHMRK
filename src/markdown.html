@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>STATS BENCHMRK Extension Command</title>
+
+<link rel="stylesheet" type="text/css" href="extsyntax.css" />
+
+
+
+
+
+</head>
+
+<body>
+<h1>STATS BENCHMRK Extension Command</h1>
+
+<p>Benchmark one or two sets of syntax and report selected resource usage
+statistics.</p>
+<div class="syntax">
+<p>STATS BENCHMRK CMDSET1=&ldquo;<em>file</em>&rdquo;<sup>&#42;</sup>
+CMDSET2=&ldquo;<em>filespec</em>&rdquo;<br/>
+NUMREP=n 
+PROCESSES=<em>process name list</em><sup>&#42;</sup></p>
+
+<p>/OUTPUT OUTFILE=&ldquo;<em>csv-file</em><sup>&#42;</sup><br/>
+STATISTICS=<em>list of statistics</em><sup>&#42;</sup></p>
+
+<p>/HELP</p>
+
+<p><sup>&#42;</sup> Required<br/>
+<sup>&#42;&#42;</sup> Default</p>
+</div>
+<p>/HELP displays this text and does nothing else.</p>
+
+
+<pre class="example"><code>STATS BENCHMRK CMDSET1=&quot;C:\jobs\insert1.sps&quot; 
+NUMREP=3  PROCESSES=stats spssengine startx startx32
+/OUTPUT OUTFILE=&quot;c:\temp\bench.csv&quot; 
+STATISTICS=UserTime KernelTime  PageFaultCount PeakWorkingSetSize WorkingSetSize.
+</code></pre>
+
+<p>This command is available only for Windows and requires the Python for Windows extensions by Mark Hammond
+available from
+<a href="http://sourceforge.net/projects/pywin32/">http://sourceforge.net/projects/pywin32/</a>
+Be sure to get the version appropriate for the version of Python required by
+Statistics.</p>
+
+<p><strong>CMDSET1</strong> and <strong>CMDSET2</strong> specify syntax files to be run repeatedly in
+alternation.  CMDSET2 is optional.  Using two command sets is
+useful when you have two alternative versions of syntax for the same
+task and want to determine which is  more efficient.</p>
+
+<p><strong>NUMREP</strong> specifies how many times to run the cmdsets.  It defaults to 1.  For each rep, CMDSET1
+is run and then, if given, CMDSET2 is run.</p>
+
+<p><strong>PROCESSES</strong> specifies one or more processes to monitor.
+Statistics are recorded for each specified process associated with Statistics.
+The process names may vary with the Statistics version.  For V22, they are</p>
+
+<ul>
+<li>stats - the Statistics frontend</li>
+<li>spssengine - the Statistics backend</li>
+<li>startx - the Python process and the R process</li>
+</ul>
+
+<p>Some older versions use<br/>
+startx32 - the R process.</p>
+
+<p>The R process must be started before running this command if it is to be
+monitored.</p>
+
+<h2>OUTPUT</h2>
+
+<p><strong>OUTFILE</strong> names a csv file to contain the benchmark statistics.  Each case
+includes process, command set, and repetition identifiers along with each
+statistic measured at the start and end of the syntax execution.</p>
+
+<p><strong>STATISTICS</strong> lists the statistics to be collected.  Use ALL to get every one.
+Otherwise select from this list.  See the Task Manager process help for
+definitions.  Availability and exact name may vary with the Windows version</p>
+
+<p>times:<br/>
+CreationTime, UserTime, KernelTime<br/>
+Creation time seems often not to be meaningful.</p>
+
+<p>memory:<br/>
+QuotaPagedPoolUsage, QuotaPeakPagedPoolUsage, QuotaNonPagedPoolUsage,
+PageFaultCount, PeakWorkingSetSize, PeakPagefileUsage, QuotaPeakNonPagedPoolUsage,
+PagefileUsage, WorkingSetSize </p>
+
+<p>i/o:<br/>
+WriteOperationCount,WriteTransferCount, OtherOperationCount,
+OtherTransferCount, ReadOperationCount, ReadTransferCount</p>
+
+<p>&copy; Copyright IBM Corp. 1989, 2014</p>
+
+</body>
+
+</html>
+
