@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Benchmark Statistics Jobs</title>
+<STYLE TYPE="text/css"> 
+<!-- 
+
+H1 {font-weight:bold; color:#006699; font-family:Verdana, Arial, sans-serif;font-size:125%; }
+H2 {font-weight:bold; color:#006699; font-family:Verdana, Arial, sans-serif;font-size:110%; }
+BODY {font-family:Verdana, Arial, sans-serif;font-size:80%; }
+TABLE {font-size:100%;font-family:Verdana, Arial, sans-serif;}
+
+/* paragraph tags */
+.step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+.step-glyph { font-family: Arial, Helvetica, sans-serif; }
+.menuselection {margin-left:10px}
+.bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+.codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;font-family:"courier new",monospace; }
+
+/* inline tags */
+.code {font-family: Courier,fixed pitch;}                           /*** used to tag pieces of code (syntax, Python, R, HTML, etc.)   ***/
+.screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+.name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+.runinhead {font-weight: bold} 
+.superscript {vertical-align:super; font-size:80%}
+.subscript {vertical-align:sub; font-size:80%}
+.symbol {font-family: Symbol}
+
+--> 
+</STYLE>
+</head>
+<body>
+<h1>Benchmark Statistics Jobs</h1>
+This command runs one or two syntax files one or more times
+and records various statistics on computer resource consumption.
+
+<p><span class="runinhead">Syntax file to benchmark</span> 
+Select a syntax file to be benchmarked.
+
+<p><span class="runinhead">Alternate syntax file for comparison</span> Optionally
+select another syntax file to be run in alternation with the first one.  This is useful
+when you have two version of syntax and want to compare their resource use.
+
+<p><span class="runinhead">Processes to Measure</span> Check boxes for the
+Statistics processes to be measured.  These can be the Statistics frontend, the
+backend, and the Python and R programmability processes.
+<p class="bullet">&bull; The names of the processes vary some among
+Statistics versions.  If you cannot specify a process you want to monitor,
+paste the syntax and edit the name.
+
+<p><span class="runinhead">Start the R process</span> The R process must
+be started before running the benchmark command if it is to be measured.  Check this box if that process
+has not been started, and you want the dialog box to do this.  
+<p class="bullet">&bull; If the R Essentials are not installed, do not check this box.
+
+<p><span class="runinhead">Output File to Create</span> Specify a file name
+to receive the recorded statistics.  The file will be in csv format and can be read
+using File>Read Text Data.  It will contain variable names on the first line.
+The variables include the process name, the cmdset, and the repetition number and the statistics values
+at the start and stop of each syntax file run.  There is one record for each process.
+
+<p><span class="runinhead">Number of repetitions</span> Specify the number of
+times that the syntax files should be run.
+
+<h2>Statistics</h2>
+<p>Choose the particular statistics to be measured each time a syntax file is run.
+<p><span class="runinhead">All statistics</span> Check this box to generate all
+available statistics.  
+<p class="bullet">&bull; The other checkboxes are ignored if this box is checked.
+<p class="bullet">&bull;  Checking this box generates some statistics not listed
+elsewhere in this dialog.
+
+<p><span class="runinhead">Time</span> The total time for a job is the
+sum of the User and Kernel time.  The process creation time is often not
+meaningful.
+<p><span class="runinhead">I/O</span> In addition to the number of reads
+and writes, by using syntax the bytes counts are also available.
+
+<p><span class="runinhead">Memory</span> The working set size tells
+you the number of pages in the process' memory.  The page fault statistics
+tell you how many times the system had to retrieve code and other resources from disk because
+it was not in memory when needed.
+
+<h2>Additional Features</h2>
+<p>
+This dialog generates syntax for the STATS BENCHMRK extension command. To display help for this command,
+run the following syntax:
+</p>
+<p class="codeblock">STATS BENCHMRK /HELP.</p>
+
+<h2>Requirements</h2>
+This command requires the Python Essentials, the Python Windows extensions,
+and the STATS BENCHMRK extension command.  You can get the Python Windows
+extensions from <a href="http://sourceforge.net/projects/pywin32">Sourceforge</a>.
+Be sure to get the version appropriate for the version of Python required by Statistics.
+You can download the other materials from the
+<a href="http://www.ibm.com/developerworks/spssdevcentral">SPSS Community</a>.
+<br/>
+<hr/>
+<p style="font-family:Verdana, Arial, sans-serif;font-size:80%;"> ©Copyright IBM Corp. 1989, 2012</p>

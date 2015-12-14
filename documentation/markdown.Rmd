@@ -1,0 +1,81 @@
+STATS BENCHMRK Extension Command
+================================
+
+Benchmark one or two sets of syntax and report selected resource usage
+statistics.
+
+
+STATS BENCHMRK CMDSET1="*file*"^&#42;
+CMDSET2="*filespec*"  
+NUMREP=n 
+PROCESSES=*process name list*^&#42;
+
+/OUTPUT OUTFILE="*csv-file*^&#42;  
+STATISTICS=*list of statistics*^&#42;
+
+/HELP
+
+^&#42; Required  
+^&#42;&#42; Default
+    
+/HELP displays this text and does nothing else.
+
+Example:
+```
+STATS BENCHMRK CMDSET1="C:\jobs\insert1.sps" 
+NUMREP=3  PROCESSES=stats spssengine startx startx32
+/OUTPUT OUTFILE="c:\temp\bench.csv" 
+STATISTICS=UserTime KernelTime  PageFaultCount PeakWorkingSetSize WorkingSetSize.
+```
+
+This command is available only for Windows and requires the Python for Windows extensions by Mark Hammond
+available from
+http://sourceforge.net/projects/pywin32/
+Be sure to get the version appropriate for the version of Python required by
+Statistics.
+
+**CMDSET1** and **CMDSET2** specify syntax files to be run repeatedly in
+alternation.  CMDSET2 is optional.  Using two command sets is
+useful when you have two alternative versions of syntax for the same
+task and want to determine which is  more efficient.
+
+**NUMREP** specifies how many times to run the cmdsets.  It defaults to 1.  For each rep, CMDSET1
+is run and then, if given, CMDSET2 is run.
+
+**PROCESSES** specifies one or more processes to monitor.
+Statistics are recorded for each specified process associated with Statistics.
+The process names may vary with the Statistics version.  For V22, they are
+* stats - the Statistics frontend
+* spssengine - the Statistics backend
+* startx - the Python process and the R process
+
+Some older versions use  
+startx32 - the R process.
+
+The R process must be started before running this command if it is to be
+monitored.
+
+OUTPUT
+------
+**OUTFILE** names a csv file to contain the benchmark statistics.  Each case
+includes process, command set, and repetition identifiers along with each
+statistic measured at the start and end of the syntax execution.
+
+**STATISTICS** lists the statistics to be collected.  Use ALL to get every one.
+Otherwise select from this list.  See the Task Manager process help for
+definitions.  Availability and exact name may vary with the Windows version
+
+times:  
+CreationTime, UserTime, KernelTime  
+Creation time seems often not to be meaningful.
+ 
+memory:  
+QuotaPagedPoolUsage, QuotaPeakPagedPoolUsage, QuotaNonPagedPoolUsage,
+PageFaultCount, PeakWorkingSetSize, PeakPagefileUsage, QuotaPeakNonPagedPoolUsage,
+PagefileUsage, WorkingSetSize 
+   
+i/o:  
+WriteOperationCount,WriteTransferCount, OtherOperationCount,
+OtherTransferCount, ReadOperationCount, ReadTransferCount
+
+(C) Copyright IBM Corp. 1989, 2014
