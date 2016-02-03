@@ -1,11 +1,11 @@
 # STATS BENCHMRK
 ## Benchmark Statistics Jobs
- This command runs one or two syntax files repeatedly and 
+ This command runs one or two syntax files repeatedly and records various statistics on time, memory, and i/o resource usage by the computer processes associated with Statistics.
 
 ---
 Requirements
 ----
-- IBM SPSS Statistics 19 or later
+- IBM SPSS Statistics 19 or later, the corresponding IBM SPSS Statistics-Integration Plug-in for Python, and the Python Extensions for Windows (http://sourceforge.net/projects/pywin32).
 
 ---
 Installation intructions
