@@ -4,7 +4,7 @@ http://sourceforge.net/projects/pywin32/"""
 
 #Licensed Materials - Property of IBM
 #IBM SPSS Products: Statistics General
-#(c) Copyright IBM Corp. 2011, 2014
+#(c) Copyright IBM Corp. 2011, 2020
 #US Government Users Restricted Rights - Use, duplication or disclosure 
 #restricted by GSA ADP Schedule Contract with IBM Corp.
 
@@ -118,7 +118,7 @@ class benchstats(object):
             self.stats = stats
         # readings will be a list of lists of readings: one list for each process
         self.readings = []
-        self.measures=["time"]
+        self.measures = ["time"]
         self.apis = [time]
         
         # build list of calls for specified measures
@@ -140,7 +140,7 @@ class benchstats(object):
         for p in processes:
             # this api is slow
             pnum = win32pdhutil.FindPerformanceAttributesByName(p)
-            if len(pnum) > 1 and p.lower() in ["stats", "spssengine", "statisticsb"]:
+            if len(pnum) > 1 and str(p).lower() in ["stats", "spssengine", "statisticsb"]:
                 raise SystemError(_("""There are multiple instances of Statistics running.  Only one can be running when monitoring: %s""" % p))
             for instance in pnum:
                 self.handles.append(win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, 0, instance))
@@ -150,7 +150,7 @@ class benchstats(object):
         if len(self.processes) == 0:
             raise ValueError(_("""No instances of any of the specified processes were found"""))
         else:
-            print "Processes to be monitored: " + ",".join(self.processes)
+            print("Processes to be monitored: " + ",".join(self.processes))
             
     def snap(self, rep, group):
         """record new set of statistics measures for designated group and selected processes
@@ -180,9 +180,9 @@ class benchstats(object):
             for rows in range(0, len(self.readings[pn]), mergecount):
                 row = str(self.readings[pn][rows][0])+ " " \
                     + str([self.readings[pn][rows+i][1:] for i in range(mergecount)])
-                yield re.sub(r"[][(),L]", "", row) + "\n"
+                yield re.sub(u"[][(),L]", "", row) + "\n"
 
-    def save(self, filespec, sets=[""]):
+    def save(self, filespec, sets=None):
         """write measures to specified file in a form suitable for reading into Statistics.
         
         sets is a list of strings to append to the generated variable names.  Its length
@@ -196,7 +196,8 @@ class benchstats(object):
         would save a set of before and after measures for the selected statistics with
         Start and Stop appended to the pairs of variable names.
         """
-        
+        if sets is None:
+            sets = [""]
         for p in self.handles:
             win32api.CloseHandle(p)
 
@@ -220,9 +221,9 @@ def caselessin(needle, haystack):
     needle is the item to find
     haystack is a list of matches"""
     
-    needle = needle.lower()
+    needle = str(needle).lower()
     for item in haystack:
-        if needle == item.lower():
+        if needle == str(item).lower():
             return item
     else:
         return None
@@ -287,7 +288,7 @@ def benchmark(outfile, cmdset1, cmdset2=None, stats=None, processes=None, numrep
 def Run(args):
     """Execute the STATS BENCHMRK extension command"""
 
-    args = args[args.keys()[0]]
+    args = args[list(args.keys())[0]]
 
     oobj = Syntax([
         Template("CMDSET1", subc="",  ktype="literal", var="cmdset1"),
@@ -303,12 +304,12 @@ def Run(args):
     #enable localization
     global _
     try:
-        _("---")
+        (_("---"))
     except:
         def _(msg):
             return msg
     # A HELP subcommand overrides all else
-    if args.has_key("HELP"):
+    if "HELP" in args:
         #print helptext
         helper()
     else:
@@ -328,7 +329,7 @@ def helper():
     # webbrowser.open seems not to work well
     browser = webbrowser.get()
     if not browser.open_new(helpspec):
-        print("Help file not found:" + helpspec)
+        print(("Help file not found:" + helpspec))
 try:    #override
     from extension import helper
 except:

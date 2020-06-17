@@ -1,1 +1,26 @@
-<!-- ***************************************************************** --><!--                                                                   --><!-- Licensed Materials - Property of IBM                              --><!--                                                                   --><!-- IBM SPSS Products: Statistics Common                              --><!--                                                                   --><!-- (C) Copyright IBM Corp. 1989, 2011                                --><!--                                                                   --><!-- US Government Users Restricted Rights - Use, duplication or       --><!-- disclosure restricted by GSA ADP Schedule Contract with IBM       --><!-- Corp.                                                             --><!--                                                                   --><!-- ***************************************************************** --><Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="STATS BENCHMRK" Language="Python">	<Subcommand Name="" Occurrence="Optional">		<Parameter Name="CMDSET1" ParameterType="InputFile"/>		<Parameter Name="CMDSET2" ParameterType="InputFile"/>		<Parameter Name="NUMREP" ParameterType="Integer"/>		<Parameter Name="PROCESSES" ParameterType="TokenList"/>	</Subcommand>	<Subcommand Name="OUTPUT">		<Parameter Name="OUTFILE" ParameterType="OutputFile"/>		<Parameter Name="STATISTICS" ParameterType="TokenList"/>	</Subcommand>	<Subcommand Name="HELP" Occurrence="Optional"/></Command>
+<!-- ***************************************************************** -->
+<!--                                                                   -->
+<!-- Licensed Materials - Property of IBM                              -->
+<!--                                                                   -->
+<!-- IBM SPSS Products: Statistics Common                              -->
+<!--                                                                   -->
+<!-- (C) Copyright IBM Corp. 1989, 2020                                -->
+<!--                                                                   -->
+<!-- US Government Users Restricted Rights - Use, duplication or       -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with IBM       -->
+<!-- Corp.                                                             -->
+<!--                                                                   -->
+<!-- ***************************************************************** -->
+<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="STATS BENCHMRK" Language="Python" LanguageVersion="3">
+	<Subcommand Name="" Occurrence="Optional">
+		<Parameter Name="CMDSET1" ParameterType="InputFile"/>
+		<Parameter Name="CMDSET2" ParameterType="InputFile"/>
+		<Parameter Name="NUMREP" ParameterType="Integer"/>
+		<Parameter Name="PROCESSES" ParameterType="TokenList"/>
+	</Subcommand>
+	<Subcommand Name="OUTPUT">
+		<Parameter Name="OUTFILE" ParameterType="OutputFile"/>
+		<Parameter Name="STATISTICS" ParameterType="TokenList"/>
+	</Subcommand>
+	<Subcommand Name="HELP" Occurrence="Optional"/>
+</Command>

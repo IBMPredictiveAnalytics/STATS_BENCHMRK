@@ -2,15 +2,17 @@ Name: STATS BENCHMRK
 Dialog-Specs: STATS_BENCHMRK.spd
 Command-Specs: STATS_BENCHMRK.xml
 Code-Files: STATS_BENCHMRK.py
-Misc-Files: markdown.html,extsyntax.css,IBMdialogicon.png
+Misc-Files: extsyntax.css,IBMdialogicon.png,markdown.html
 Summary: Benchmark Statistics Jobs
 Description: This command runs one or two syntax files repeatedly and 
  records various statistics on time, memory, and i/o resource usage by
   the computer processes associated with Statistics.  It requires the 
  Python Extensions for Windows.
 Author: JKP, IBM SPSS
-Version: 1.0.2
-Product-Version: 19
+Version: 2.0.2
+Product-Version: 24
 Date: Jan-2012
-Links: http://sourceforge.net/projects/pywin32
+Product-Version-Maximum: 99
 Plugins: Python
+Python-Version: 3
+Links: http://sourceforge.net/projects/pywin32
