@@ -1,4 +1,5 @@
 Name: STATS BENCHMRK
+Display-Name: Benchmark Statistics
 Dialog-Specs: STATS_BENCHMRK.spd
 Command-Specs: STATS_BENCHMRK.xml
 Code-Files: STATS_BENCHMRK.py
